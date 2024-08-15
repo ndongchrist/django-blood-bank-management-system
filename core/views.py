@@ -102,11 +102,11 @@ def register_donor(request):
         
         try:
             if password1 != password2:
-                return render(request, 'accounts/singup_patient.html', {'message': 'Passwords do not match'})
+                return redirect('register_donor')
 
             # Check if email already exists
             if User.objects.filter(email=email).exists():
-                return render(request, 'accounts/singup_patient.html', {'message': 'Email already registered'})
+                return redirect('register_donor')
 
             # Create a new user
             user = User.objects.create(
