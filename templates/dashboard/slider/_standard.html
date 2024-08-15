@@ -1,0 +1,22 @@
+{% load static %}
+
+
+<nav class="navbar navbar-light navbar-vertical">
+    <div class="container d-flex flex-column">
+        <a class="navbar-brand mb-3 text-white" href="#">BBMS - Standard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVertical" aria-controls="navbarVertical" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse" id="navbarVertical">
+            <nav class="nav flex-column navbar-nav">
+                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="#">Profile</a>
+                <a class="nav-link" href="#">Settings</a>
+                <a class="nav-link" href="#">Reports</a>
+            </nav>
+        </div>
+    </div>
+    <a href='{% url "signout" %}'>Logout Here</a>
+
+    <p>Powered By <a class='text-white'>GoldenBrain Tek</a></p>
+</nav>

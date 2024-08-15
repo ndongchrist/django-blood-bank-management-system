@@ -1,0 +1,37 @@
+{% extends "base.html" %}   
+{% load static %}   
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4 my-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-4">Login</h5>
+                    <form action={% url "login" %} method='POST'>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Username</label>
+                            <input type="text" name='username' class="form-control" id="exampleI" aria-describedby="Help">
+                            <div id="" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" name='password' class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <button type="submit" class="btn btn-danger w-100 my-1">Submit</button>
+                        <p class="text-center my-1">Don't yet have an account?</p>
+                        <div class="flex d-flex justify-content-center">
+                            <a href="{% url "register_donor" %}" class="p-1">SignUp Donor</a>
+                            <a href="{% url "register_patient" %}" class="p-1">SignUp Patient</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

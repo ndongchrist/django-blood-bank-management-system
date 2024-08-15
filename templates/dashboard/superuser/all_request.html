@@ -1,0 +1,52 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+<div class="h2">
+   All Requests
+</div>
+
+<div class="row mt-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Volume (ml)</th>
+        <th scope="col">Blood Group</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in requests %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ item.volume }}</td>
+        <td>{{ item.blood_group }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.notes }}</td>
+        <td>
+          <!-- Update Button -->
+          <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateitemModal{{ item.id }}">
+            Update
+          </button>
+  
+          <!-- Delete Button -->
+          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteitemModal{{ item.id }}">
+            Delete
+          </button>
+        </td>
+        <!-- Include Modals here -->
+         {% include "dashboard/superuser/_request_modals.html" %}
+      </tr>
+      
+      {% endfor %}
+    </tbody>
+  </table>
+  
+</div>
+  
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  
+<div class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 text-center">
+            <div class="d-inline-block rounded-circle bg-white p-3">
+                <img src="{% static 'BloodDonationLogo.png' %}" alt="Blood Donation Logo" class="img-fluid rounded-circle">
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <h2 class=" text-white">Be a force for Good</h2><i class="bi bi-heart-pulse-fill"></i>
+        </div>
+    </div>
+</div> 
+
+{% endblock content %}

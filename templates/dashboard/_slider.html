@@ -1,0 +1,9 @@
+{% if request.user.user_type == PATIENT %}
+    {% include "dashboard/slider/_patient.html" %}
+{% elif request.user.is_superuser %}
+    {% include "dashboard/slider/_superuser.html" %}
+{% elif request.user.user_type == DONOR %}
+    {% include "dashboard/slider/_donor.html" %}
+{% else %}
+    {% include "dashboard/slider/_standard.html" %}
+{% endif %}

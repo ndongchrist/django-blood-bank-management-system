@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}   
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 my-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-4">Register as a Patient</h5>
+                    <form action="{% url "register_patient" %}" method='POST'>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" name="first_name" id="firstName" aria-describedby="emailHelp" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="lastName" aria-describedby="emailHelp" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName" class="form-label">Username</label>
+                            <input type="text" class="form-control" name="username" id="firstName" aria-describedby="emailHelp" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="number" class="form-control" name="age" id="age" aria-describedby="emailHelp">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="weight" class="form-label">Weight</label>
+                                <input type="number" class="form-control" name="weight" id="weight" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="bloodGroup" class="form-label">Blood Group</label>
+                            <select class="form-select" name="blood_group" id="bloodGroup" aria-label="Select Blood Group" required>
+                                <option selected>Choose your blood group</option>
+                                {% for value, display in blood_Choices %}
+                                    <option value="{{value}}">{{ display }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="illness" class="form-label">Illness</label>
+                            <input type="text" class="form-control" name="illness" id="illness" aria-describedby="emailHelp" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="illness" class="form-label">Phone</label>
+                            <input type="number" class="form-control" name="phone" id="illness" aria-describedby="emailHelp">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" name="gender" aria-label="Select Gender" required>
+                                <option selected>Choose an option</option>
+                                {% for value, display in gender_choices %}
+                                <option value="{{ value }}">{{ display }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password1" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password1" id="password1" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password2" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" name="password2" id="password2" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-danger w-100 my-1">Submit</button>
+                        <p class="text-center my-1">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+                        <div class="d-flex justify-content-center">
+                            <a href="{% url 'register_donor' %}" class="p-1">SignUp Donor</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

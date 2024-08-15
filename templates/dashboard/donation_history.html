@@ -1,0 +1,52 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+<div class="h2">
+   Your Donations
+</div>
+
+<div class="row mt-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Volume (ml)</th>
+        <th scope="col">Blood Group</th>
+        <th scope="col">Date</th>
+        <th scope="col">Description</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for donation in your_donation %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ donation.volume }}</td>
+        <td>{{ donation.blood_group }}</td>
+        <td>{{ donation.date }}</td>
+        <td>{{ donation.notes }}</td>
+        <td>{{ donation.status }}</td>
+        <td>
+          <!-- Update Button -->
+          <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateDonationModal{{ donation.id }}">
+            Update
+          </button>
+  
+          <!-- Delete Button -->
+          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteDonationModal{{ donation.id }}">
+            Delete
+          </button>
+        </td>
+        <!-- Include Modals here -->
+      {% include 'dashboard/update_delete_modals_donation.html' %}
+      </tr>
+      
+      {% endfor %}
+    </tbody>
+  </table>
+  
+</div>
+  
+{% endblock content %}

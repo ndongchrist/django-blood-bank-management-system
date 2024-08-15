@@ -1,0 +1,55 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+<div class="h2">
+   Make a Blood Request
+</div>
+<div class="container my-5">
+    <div class="row justify-content-start">
+        <div class="col-md-8 col-lg-10 my-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-4">Register a Request</h5>
+                    <form action='{% url "make_request" %}' method='POST'>
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="">
+                                    <label for="volume" class="form-label">Valume(ml3)</label>
+                                    <input type="number" class="form-control" name="volume" id="volume" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="bloodGroup" class="form-label">Blood Group</label>
+                                <select class="form-select" name="blood_group" id="bloodGroup" aria-label="Select Blood Group">
+                                    <option selected>Choose your blood group</option>
+                                    {% for value, display in blood_Choices %}
+                                        <option value="{{value}}">{{ display }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="age" class="form-label">Date</label>
+                                <input type="date" class="form-control" name="date" id="age" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="weight" class="form-label">Description</label>
+                                <input type="Description" class="form-control" name="description" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-danger w-100 my-1">Request</button>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

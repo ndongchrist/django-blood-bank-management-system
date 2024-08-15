@@ -1,0 +1,52 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+<div class="h2">
+   Make a Donation
+</div>
+<div class="container my-5">
+    <div class="row justify-content-start">
+        <div class="col-md-8 col-lg-10 my-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-4">Donate  </h5>
+                    <form action="{% url 'create_donation' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          
+                          <div class="mb-3">
+                            <label for="volume" class="form-label">Volume (ml)</label>
+                            <input type="number" class="form-control" id="volume" name="volume" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="bloodGroup" class="form-label">Blood Group</label>
+                            <select class="form-select" id="bloodGroup" name="blood_group" aria-label="Select Blood Group" required>
+                              {% for value, display in blood_Choices %}
+                                <option value="{{ value }}">{{ display }}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                          <div class="mb-3">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="notes" class="form-label">Description</label>
+                            <textarea class="form-control" id="notes" name="notes"></textarea>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button ml-2" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary ">Create Donation</button>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+

@@ -1,0 +1,26 @@
+{% load static %}
+
+
+<nav class="navbar navbar-light navbar-vertical">
+    <div class="container d-flex flex-column">
+        <a class="navbar-brand mb-3 text-white" href="#">BBMS - Patient</a>
+        <p class="mb-3 text-white" href="#">welcome, {{ request.user.username }}</p>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVertical" aria-controls="navbarVertical" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse" id="navbarVertical">
+            <nav class="nav flex-column navbar-nav">
+                <a class="nav-link" href="{% url "dashboard" %}">Dashboard</a>
+                <a class="nav-link" href="{% url "make_request" %}">Make a Requests</a>
+                <a class="nav-link" href="{% url "request_history" %}">Requesst History</a>
+                <a class="nav-link" href="#"></a>
+                <a class="nav-link" href="#"></a>
+            </nav>
+        </div>
+    </div>
+   <button>
+    <a class='btn btn-white rounded-circle' href='{% url "signout" %}'>Logout Here</a>
+   </button>
+
+    <p>Powered By <a class='text-white'>GoldenBrain Tek</a></p>
+</nav>

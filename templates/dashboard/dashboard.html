@@ -1,0 +1,161 @@
+{% extends "dashboard/base.html" %}
+
+
+{% block content %}
+
+{% if request.user.user_type == PATIENT %}
+
+<div class="row mt-5">
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-info text-white p-1">
+            <h4>Total Number of Requests</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{request_number}}</span>
+            </p>
+         </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-success text-white p-1">
+            <h4>Total Number of Accepted Requests</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ accepted_number }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-danger text-white p-1">
+            <h4>Total Number of Rejected Requests</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ rejected_request }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-warning text-white p-1">
+            <h4>Total Number of Pending Requests</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ pending_request }}</span>
+            </p>
+        </div>
+    </div>
+</div>
+  
+{% elif request.user.user_type == DONOR %}
+
+<div class="row mt-5">
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-info text-white p-1">
+            <h4>Total Number of Donations</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{donations}}</span>
+            </p>
+         </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-success text-white p-1">
+            <h4>Total Number of Accepted Donations</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ accepted_donations }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-danger text-white p-1">
+            <h4>Total Number of Rejected Donations</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ rejected_donations }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-warning text-white p-1">
+            <h4>Total Number of Pending Donations</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ pneding_donations }}</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+{% elif request.user.is_superuser %}
+
+<div class="row mt-5">
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-info text-white p-1">
+            <h4>Total Number of Donations</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ donations }}</span>
+            </p>
+         </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-warning text-white p-1">
+            <h4>Total Number of Requests</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ requests }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-danger text-white p-1">
+            <h4>Rejected Requests</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ rejected_request }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-success text-white p-1">
+            <h4> Accepted Requests</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ accepted_number }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-danger text-white p-1">
+            <h4>Total Number of Rejected Donations</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ rejected_donations }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-success text-white p-1">
+            <h4>Total Number of Accepted Donations</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ accepted_donations }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-primary text-white p-1">
+            <h4>Total Number of users</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ users }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-primary text-white p-1">
+            <h4>Total Number of Donors</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ donors }}</span>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="square bg-primary text-white p-1">
+            <h4>Total Number of Patients</h4>
+            <p class="p-4 d-flex justify-content-center align-items-center">
+                <span class="circle">{{ patients }}</span>
+            </p>
+        </div>
+    </div>
+</div>
+  
+{% endif %}
+
+  
+{% endblock content %}
