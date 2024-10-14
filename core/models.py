@@ -3,6 +3,9 @@ import uuid
 from .managers import *
 
 
+from wagtail.models import Page
+from wagtail.admin.panels import FieldPanel
+from wagtail.fields import RichTextField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
@@ -49,3 +52,14 @@ class Request(BloodBaseModel):
 
     def __str__(self):
         return f"{self.user_requesting.username} - {self.date}"
+
+
+
+class BlogPage(Page):
+    intro = RichTextField(max_length=250)
+    body = models.TextField()
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+        FieldPanel('body'),
+    ]

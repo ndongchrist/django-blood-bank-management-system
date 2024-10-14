@@ -40,6 +40,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    
+    # third party apps
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail',
+    'modelcluster',
+    'taggit',
+    # Optional: if you're using Wagtail's blog functionalities
+    'wagtail.contrib.routable_page',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +72,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'bloodBMS.urls'
 
-STATICFILES_STORAGE="whitenoise.runserver_nostatic.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 TEMPLATES = [
     {
@@ -161,3 +178,17 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#wagtail
+# Set the site name
+WAGTAIL_SITE_NAME = 'Blood BMS'
+
+# Frontend cache control
+WAGTAIL_FRONTEND_CACHE = {}
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.database',
+    }
+}
