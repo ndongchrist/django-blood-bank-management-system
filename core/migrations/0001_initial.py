@@ -9,10 +9,6 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('auth', '0014_user_age_user_blood_group_user_gender_user_illness_and_more'),
-    ]
-
     operations = [
         migrations.CreateModel(
             name='BloodDonationCenter',

@@ -8,7 +8,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0015_alter_user_email'),
         ('core', '0001_initial'),
     ]
 

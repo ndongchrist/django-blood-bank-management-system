@@ -26,9 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost').split(',')
 
 
 # Application definition
@@ -56,6 +55,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'bloodBMS.urls'
 
+STATICFILES_STORAGE="whitenoise.runserver_nostatic.CompressedManifestStaticFilesStorage"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -79,23 +80,17 @@ WSGI_APPLICATION = 'bloodBMS.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('POSTGRES_DB'),
+#         'USER': config('POSTGRES_USER'),
+#         'PASSWORD': config('POSTGRES_PASSWORD'),
+#         'HOST': config('POSTGRES_HOST'),
+#         'PORT': config('POSTGRES_PORT'),
 #     }
 # }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('POSTGRES_DB'),
-        'USER': config('POSTGRES_USER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('POSTGRES_HOST'),
-        'PORT': config('POSTGRES_PORT'),
-    }
-}
 
 # DATABASES = {
 #     'default': dj_database_url.parse(config('DATABASE_URL'))
@@ -120,6 +115,20 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://127.0.0.1:6379/1',  # Remplace le numéro de la base de données si nécessaire
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#         }
+#     }
+# }
+
+
+CELERY_BROKER_URL = config('REDIS_URL', 'redis://127.0.0.1:6379/0')  # URL du broker Redis
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL # URL du backend Redis
 
 AUTH_USER_MODEL = "auth.User"
 

@@ -1,0 +1,6 @@
+Dockerfile
+README.md
+venv
+db.sqlite3
+.git
+__pycache__

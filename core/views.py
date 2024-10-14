@@ -145,7 +145,7 @@ def signin(request):
             messages.success(request, f'Welcome back, {user.get_full_name()}!')
             return redirect('dashboard')  # Redirect to the home page or wherever you want
         else:
-            messages.error(request, 'Invalid email or password. Please try again.')
+            messages.error(request, 'Invalid username or password or user not found. Please try again.')
             return redirect('login')
     return render(request, 'accounts/login.html')
 
