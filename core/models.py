@@ -5,6 +5,7 @@ from .managers import *
 
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel
+from wagtail.images.models import Image
 from wagtail.fields import RichTextField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -58,8 +59,27 @@ class Request(BloodBaseModel):
 class BlogPage(Page):
     intro = RichTextField(max_length=250)
     body = models.TextField()
+    button = models.CharField(max_length=50, default="Read More")
+    main_image = models.ForeignKey(
+        'wagtailimages.Image',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='+'
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('intro'),
         FieldPanel('body'),
+        FieldPanel('button'),
+        FieldPanel('main_image'),  # Just use FieldPanel now, no need for ImageChooserPanel
+
     ]
+    
+class Butoon(Page):
+    botton = models.TextField()
+
+    content_panels = Page.content_panels + [
+        FieldPanel('botton'),
+
+    ]   

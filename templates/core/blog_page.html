@@ -1,7 +1,51 @@
-<!-- templates/home/home_page.html -->
 {% extends "base.html" %}
 
+{% load static %}  <!-- Load static files, if needed -->
+
 {% block content %}
-  <h1>{{ page.title }}</h1>
-  <p>{{ page.intro|safe }}</p>
+<div class="container mt-5">
+  <h1 class="text-center">{{ page.title }}</h1>
+  
+  {% if page.main_image %}
+    <div class="text-center mb-4">
+      <img src="{{ page.main_image_rendition.url }}" alt="{{ page.main_image.title }}" class="img-fluid rounded shadow">
+    </div>
+  {% endif %}
+  
+  <p class="lead text-center">{{ page.intro|safe }}</p>
+
+  <div class="text-center">
+    <button class="btn btn-primary btn-lg">{{ page.button }}</button>
+  </div>
+
+  <hr class="my-5">
+
+  <!-- Additional content section -->
+  <div class="row">
+    <div class="col-md-6">
+      <h3>About Us</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Cras ac felis eget neque dignissim scelerisque.</p>
+    </div>
+    <div class="col-md-6">
+      <h3>Our Services</h3>
+      <ul class="list-unstyled">
+        <li>✔️ Service 1: Description of Service 1</li>
+        <li>✔️ Service 2: Description of Service 2</li>
+        <li>✔️ Service 3: Description of Service 3</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <!-- Testimonial Section -->
+  <div class="text-center">
+    <h3>What Our Clients Say</h3>
+    <blockquote class="blockquote">
+      <p class="mb-0">"This is a fantastic service! Highly recommend."</p>
+      <footer class="blockquote-footer">John Doe, <cite title="Source Title">CEO of Company</cite></footer>
+    </blockquote>
+  </div>
+
+</div>
 {% endblock %}
