@@ -1,21 +1,29 @@
-version: '3.8'
+version: '3'
 
 services:
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    container_name: bms
+    
+    restart: always
     volumes:
-      - .:/app
+      - .:/django-blood-bank-management-system
     ports:
-      - "8000:8000"
+      - "8020:8000"
     depends_on:
       - db
+    command: "sh run.sh"    
+    env_file:
+      - .env
+
+  db:
+    image: postgres:15
+    container_name: db
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres  # Match your Django DB_NAME
+      POSTGRES_USER: postgres  # Match your Django DB_USER
+      POSTGRES_PASSWORD: postgres  # Match your Django DB_PASSWORD
+
